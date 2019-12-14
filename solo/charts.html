@@ -28,24 +28,29 @@
             option = null;
             rawData = [];
             //console.log(data);
-            for(var k = 0;k<6;++k) {
-                var rows0 = [],rows1 = [],rows2 = [];
+            for(var k = 0;k<5;++k) {
+                var rows0 = [],rows1 = [];
+                //rows2 = [];
                 for (let i in data){
                     let keys = mapValues(data[i]);
+                    var int_i = parseInt(i);
+                    var minn = k*100;
+                    var maxx = (k+1)*100;
+                    if(!((int_i>=minn && int_i<=maxx)||(int_i>=minn+500 && int_i<=maxx+500)))continue;
                     for (let j in keys.values) {
                         let raw = mapKeys(data[i]).values;
                         var temp = [];
-                        temp.push(raw[j*6+k]);
+                        temp.push(raw[k*5+j]);
                         temp.push(keys.values[j]);
                         if(j === "0")rows0.push(temp);
                         if(j === "1")rows1.push(temp);
-                        if(j === "2")rows2.push(temp);
+                        //if(j === "2")rows2.push(temp);
                     }
                 }
                 var lst = [];
                 lst.push(rows0);
                 lst.push(rows1);
-                lst.push(rows2);
+                //lst.push(rows2);
                 rawData.push(lst);
                 console.log(rawData);
             }
@@ -58,8 +63,7 @@
     <button type="button" onclick="show(rawData[1][0],rawData[1][1],rawData[1][2],'attack bace of A')" class="ant-btn ant-btn-red">基础攻击</button>
     <button type="button" onclick="show(rawData[3][0],rawData[3][1],rawData[3][2],'most attack of A')" class="ant-btn ant-btn-red">最大攻击</button>
     <button type="button" onclick="show(rawData[0][0],rawData[0][1],rawData[0][2],'hp of A')" class="ant-btn ant-btn-red">生命值</button>
-    <button type="button" onclick="show(rawData[4][0],rawData[4][1],rawData[4][2],'slam bace of A')" class="ant-btn ant-btn-red">暴击伤害</button>
-    <button type="button" onclick="show(rawData[5][0],rawData[5][1],rawData[5][2],'slam rate of A')" class="ant-btn ant-btn-red" >暴击率</button>
+    <button type="button" onclick="show(rawData[4][0],rawData[4][1],rawData[4][2],'slam rate of A')" class="ant-btn ant-btn-red" >暴击率</button>
     <button type="button" onclick="show(rawData[2][0],rawData[2][1],rawData[2][2],'attack rate of A')" class="ant-btn ant-btn-red" >攻击频率</button>
     <script>
 
@@ -68,7 +72,7 @@
         function show(dataA,dataB,dataC,chartname){
         echarts.init(document.getElementById('main')).setOption({
             title : {
-        text: 'A、B、C玩家的胜率分布',
+        text: 'A、B 玩家的胜率分布',
         //subtext: ''
     },
     grid: {
