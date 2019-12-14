@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="dist/bundle.js"></script>
+    <script src="dist/jquery-3.0.0.min.js"></script>
+    <script src="dist/data.js"></script>
+    <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="container" style="width: 1920px;height:1080px;"></div>
+<script>
+    const mapKeys=function (data) {
+        return Index.Mapper({
+            A_Hp:data.version.players[0].hp,
+            A_Attack_Base:data.version.players[0].operations[0].base,
+            A_Attack_Rate:data.version.players[0].operations[0].rate,
+            A_Attack_Most:data.version.players[0].operations[0].most,
+            A_Slam_Base:data.version.players[0].operations[1].base,
+            A_Slam_Rate:data.version.players[0].operations[1].rate,
+            B_Hp:data.version.players[0].hp,
+            B_Attack_Base:data.version.players[1].operations[0].base,
+            B_Attack_Rate:data.version.players[1].operations[0].rate,
+            B_Attack_Most:data.version.players[1].operations[0].most,
+            B_Slam_Base:data.version.players[1].operations[1].base,
+            B_Slam_Rate:data.version.players[1].operations[1].rate,
+            C_Hp:data.version.players[2].hp,
+            C_Attack_Base:data.version.players[2].operations[0].base,
+            C_Attack_Rate:data.version.players[2].operations[0].rate,
+            C_Attack_Most:data.version.players[2].operations[0].most,
+            C_Slam_Base:data.version.players[2].operations[1].base,
+            C_Slam_Rate:data.version.players[2].operations[1].rate
+        });
+    };
+    const mapValues=function (data) {
+        return Index.Mapper({
+            A:data.A,B:data.B,C:data.C
+        });
+    };
+    function execute(data) {
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        var schema = [
+            {name: 'A_Hp', index: 1, text: 'A_Hp'},
+            {name: 'A_Attack_Base', index: 2, text: 'A_Attack_Base'},
+            {name: 'A_Attack_Rate', index: 3, text: 'A_Attack_Rate'},
+            {name: 'A_Attack_Most', index: 4, text: 'A_Attack_Most'},
+            {name: 'A_Slam_Base', index: 5, text: 'A_Slam_Base'},
+            {name: 'A_Slam_Rate', index: 6, text: 'A_Slam_Rate'},
+            {name: 'B_Hp', index: 7, text: 'AQI'},
+            {name: 'B_Attack_Base', index: 8, text: 'PM 2.5'},
+            {name: 'B_Attack_Rate', index: 9, text: 'PM 10'},
+            {name: 'B_Attack_Most', index: 10, text: 'CO'},
+            {name: 'B_Slam_Base', index: 11, text: 'NO₂'},
+            {name: 'B_Slam_Rate', index: 12, text: 'SO₂'},
+            {name: 'C_Hp', index: 13, text: 'AQI'},
+            {name: 'C_Attack_Base', index: 14, text: 'PM 2.5'},
+            {name: 'C_Attack_Rate', index: 15, text: 'PM 10'},
+            {name: 'C_Attack_Most', index: 16, text: 'CO'},
+            {name: 'C_Slam_Base', index: 17, text: 'NO₂'},
+            {name: 'C_Slam_Rate', index: 18, text: 'SO₂'},
+            {name: 'player',index:19,texy:'玩家'}
+        ];
+
+        var rawData=[];
+        for(let i in data){
+            let raws=[];
+            let keys=mapValues(data[i]);
+            for(let j in keys.values){
+                let raw=mapKeys(data[i]).values;
+                raw.push(keys.values[j]);
+                raw.push(keys.names[j]);
+                raws.push(raw);
+            }
+            rawData=rawData.concat(raws);
+        }
+        var CATEGORY_DIM_COUNT = 18;
+        var GAP = 1;
+        var BASE_LEFT = 5;
+        var BASE_TOP = 10;
+        // var GRID_WIDTH = 220;
+        // var GRID_HEIGHT = 220;
+        var GRID_WIDTH = (100 - BASE_LEFT - GAP) / CATEGORY_DIM_COUNT - GAP;
+        var GRID_HEIGHT = (100 - BASE_TOP - GAP) / CATEGORY_DIM_COUNT - GAP;
+        var CATEGORY_DIM = 19;
+        var SYMBOL_SIZE = 3;
+
+        function retrieveScatterData(data, dimX, dimY) {
+            var result = [];
+            for (var i = 0; i < data.length; i++) {
+                var item = [data[i][dimX], data[i][dimY]];
+                item[CATEGORY_DIM] = data[i][CATEGORY_DIM];
+                result.push(item);
+            }
+            return result;
+        }
+
+        function generateGrids(option) {
+            var index = 0;
+
+            for (var i = 0; i < CATEGORY_DIM_COUNT; i++) {
+                for (var j = 0; j < CATEGORY_DIM_COUNT; j++) {
+                    if (CATEGORY_DIM_COUNT - i + j >= CATEGORY_DIM_COUNT) {
+                        continue;
+                    }
+
+                    option.grid.push({
+                        left: BASE_LEFT + i * (GRID_WIDTH + GAP) + '%',
+                        top: BASE_TOP + j * (GRID_HEIGHT + GAP) + '%',
+                        width: GRID_WIDTH + '%',
+                        height: GRID_HEIGHT + '%'
+                    });
+
+                    option.brush.xAxisIndex && option.brush.xAxisIndex.push(index);
+                    option.brush.yAxisIndex && option.brush.yAxisIndex.push(index);
+
+                    option.xAxis.push({
+                        splitNumber: 3,
+                        position: 'top',
+                        axisLine: {
+                            show: j === 0,
+                            onZero: false
+                        },
+                        axisTick: {
+                            show: j === 0,
+                            inside: true
+                        },
+                        axisLabel: {
+                            show: j === 0
+                        },
+                        type: 'value',
+                        gridIndex: index,
+                        scale: true
+                    });
+
+                    option.yAxis.push({
+                        splitNumber: 3,
+                        position: 'right',
+                        axisLine: {
+                            show: i === CATEGORY_DIM_COUNT - 1,
+                            onZero: false
+                        },
+                        axisTick: {
+                            show: i === CATEGORY_DIM_COUNT - 1,
+                            inside: true
+                        },
+                        axisLabel: {
+                            show: i === CATEGORY_DIM_COUNT - 1
+                        },
+                        type: 'value',
+                        gridIndex: index,
+                        scale: true
+                    });
+
+                    option.series.push({
+                        type: 'scatter',
+                        symbolSize: SYMBOL_SIZE,
+                        xAxisIndex: index,
+                        yAxisIndex: index,
+                        data: retrieveScatterData(rawData, i, j)
+                    });
+
+                    option.visualMap.seriesIndex.push(option.series.length - 1);
+
+                    index++;
+                }
+            }
+        }
+
+
+        var option = {
+            animation: false,
+            brush: {
+                brushLink: 'all',
+                xAxisIndex: [],
+                yAxisIndex: [],
+                inBrush: {
+                    opacity: 1
+                }
+            },
+            visualMap: {
+                type: 'piecewise',
+                categories: ["A", "B", "C"],
+                dimension: CATEGORY_DIM,
+                orient: 'horizontal',
+                top: 0,
+                left: 'center',
+                inRange: {
+                    color: ['#c23531','#2f4554', '#61a0a8']
+                },
+                outOfRange: {
+                    color: '#ddd'
+                },
+                seriesIndex: [0]
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            parallelAxis: [
+                {dim: 0, name: schema[0].text},
+                {dim: 1, name: schema[1].text},
+                {dim: 2, name: schema[2].text},
+                {dim: 3, name: schema[3].text},
+                {dim: 4, name: schema[4].text},
+                {dim: 5, name: schema[5].text},
+                {dim: 6, name: schema[6].text},
+                {dim: 7, name: schema[7].text},
+                {dim: 8, name: schema[8].text},
+                {dim: 9, name: schema[9].text},
+                {dim: 10, name: schema[10].text},
+                {dim: 11, name: schema[11].text},
+                {dim: 12, name: schema[12].text},
+                {dim: 13, name: schema[13].text},
+                {dim: 14, name: schema[14].text},
+                {dim: 15, name: schema[15].text},
+                {dim: 16, name: schema[16].text},
+                {dim: 17, name: schema[17].text},
+                {dim: 18, name: schema[18].text}
+            ],
+            parallel: {
+                bottom: '5%',
+                left: '5%',
+                height: '31%',
+                width: '55%',
+                parallelAxisDefault: {
+                    type: 'value',
+                    name: 'AQI指数',
+                    nameLocation: 'end',
+                    nameGap: 20,
+                    splitNumber: 3,
+                    nameTextStyle: {
+                        fontSize: 14
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#555'
+                        }
+                    },
+                    axisTick: {
+                        lineStyle: {
+                            color: '#555'
+                        }
+                    },
+                    splitLine: {
+                        show: false
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: '#555'
+                        }
+                    }
+                }
+            },
+            grid: [],
+            xAxis: [],
+            yAxis: [],
+            series: [
+                {
+                    name: 'parallel',
+                    type: 'parallel',
+                    smooth: true,
+                    lineStyle: {
+                        normal: {
+                            width: 1,
+                            opacity: 0.3
+                        }
+                    },
+                    data: rawData
+                }
+            ]
+        };
+        generateGrids(option);
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    }
+    JSONexecute('./data/tree/test_rate_data.json',execute);
+</script>
+</body>
+</html>
