@@ -22,9 +22,39 @@
 </head>
 <body>
     <script>
-        JSONexecute('./data/tree/test_rate_data.json',execute);
+        let rawData=[];
+        function execute(data) {
+            var app = {};
+            option = null;
+            rawData = [];
+            //console.log(data);
+            for(var k = 0;k<6;++k) {
+                var rows0 = [],rows1 = [],rows2 = [];
+                for (let i in data){
+                    let keys = mapValues(data[i]);
+                    for (let j in keys.values) {
+                        let raw = mapKeys(data[i]).values;
+                        var temp = [];
+                        temp.push(raw[j*6+k]);
+                        temp.push(keys.values[j]);
+                        if(j === "0")rows0.push(temp);
+                        if(j === "1")rows1.push(temp);
+                        if(j === "2")rows2.push(temp);
+                    }
+                }
+                var lst = [];
+                lst.push(rows0);
+                lst.push(rows1);
+                lst.push(rows2);
+                rawData.push(lst);
+                console.log(rawData);
+            }
+            //return rawData;
+            //console.log(rawData);
+        }
+        JSONexecute('./data/tree/train_rate_data.json',execute);
     </script>
-    <div id="container" style="width: 600px;height:400px;"></div>
+    <div id="main" style="width: 1200px;height:800px;"></div>
     <button type="button" onclick="show(rawData[1][0],rawData[1][1],rawData[1][2],'attack bace of A')" class="ant-btn ant-btn-red">基础攻击</button>
     <button type="button" onclick="show(rawData[3][0],rawData[3][1],rawData[3][2],'most attack of A')" class="ant-btn ant-btn-red">最大攻击</button>
     <button type="button" onclick="show(rawData[0][0],rawData[0][1],rawData[0][2],'hp of A')" class="ant-btn ant-btn-red">生命值</button>
@@ -32,37 +62,8 @@
     <button type="button" onclick="show(rawData[5][0],rawData[5][1],rawData[5][2],'slam rate of A')" class="ant-btn ant-btn-red" >暴击率</button>
     <button type="button" onclick="show(rawData[2][0],rawData[2][1],rawData[2][2],'attack rate of A')" class="ant-btn ant-btn-red" >攻击频率</button>
     <script>
-        let rawData=[];
-        function execute(data) {
-    var dom = document.getElementById("container");
-    var myChart = echarts.init(dom);
-    var app = {};
-    option = null;
-    rawData = [];
-    //console.log(data);
-    for(var k = 0;k<6;++k) {
-        var rows0 = [],rows1 = [],rows2 = [];
-        for (let i in data){
-            let keys = mapValues(data[i]);
-            for (let j in keys.values) {
-                let raw = mapKeys(data[i]).values;
-                var temp = [];
-                temp.push(raw[j*6+k]);
-                temp.push(keys.values[j]);
-                if(j === "0")rows0.push(temp);
-                if(j === "1")rows1.push(temp);
-                if(j === "2")rows2.push(temp);
-            }
-        }
-        var lst = [];
-        lst.push(rows0);
-        lst.push(rows1);
-        lst.push(rows2);
-        rawData.push(lst);
-    }
-    //return rawData;
-    //console.log(rawData);
-}
+
+
 
         function show(dataA,dataB,dataC,chartname){
         echarts.init(document.getElementById('main')).setOption({
@@ -140,7 +141,7 @@
     ],
     series : [
     {
-            name:'A胜率',
+            name:'A',
             type:'scatter',
             data:dataA,
             markArea: {
@@ -180,7 +181,7 @@
             }
         },
         {
-            name:'B胜率',
+            name:'B',
             type:'scatter',
             data:dataB,
             markArea: {
@@ -220,7 +221,7 @@
             }
         },
         {
-            name:'C胜率',
+            name:'C',
             type:'scatter',
             data: dataC,
             markArea: {

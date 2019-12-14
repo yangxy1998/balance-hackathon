@@ -1,5 +1,25 @@
+const Predictor = require('./Predictor');
+const Mapper = require('./Mapper');
+const fs=require('fs');
+module.exports = function () {
+    const train_data=JSON.parse(fs.readFileSync(`${__dirname}/../data/tree/train_rate_data.json`));
+    const test_data=JSON.parse(fs.readFileSync(`${__dirname}/../data/tree/test_rate_data.json`));
+    const predictor=new Predictor();
+    for(let i in train_data){
+        let data=train_data[i];
+        predictor.pushMap(mapKeys(data).values, mapValues(data).values);
+    }
+    predictor.initMLR();
+    for(let i in test_data){
+        let data=test_data[i];
+        console.log('predict:'+predictor.predict(mapKeys(data).values)
+            +'reality:'+mapValues(data).values);
+    }
+    console.log(predictor.getWeights());
+    predictor.save();
+};
 const mapKeys=function (data) {
-    return Index.Mapper({
+    return Mapper({
         A_Hp:data.version.players[0].hp,
         A_Attack_Base:data.version.players[0].operations[0].base,
         A_Attack_Rate:data.version.players[0].operations[0].rate,
@@ -21,39 +41,7 @@ const mapKeys=function (data) {
     });
 };
 const mapValues=function (data) {
-    return Index.Mapper({
-        A:data.A,B:data.B,C:data.C
+    return Mapper({
+        A_Average_Score:data.A,B_Average_Score:data.B,C_Average_Score:data.C
     });
 };
-
-
-// function execute(data) {
-//     var dom = document.getElementById("container");
-//     var myChart = echarts.init(dom);
-//     var app = {};
-//     option = null;
-//     var rawData = [];
-//     //console.log(data);
-//     for(var k = 0;k<6;++k) {
-//         var rows0 = [],rows1 = [],rows2 = [];
-//         for (let i in data){
-//             let keys = mapValues(data[i]);
-//             for (let j in keys.values) {
-//                 let raw = mapKeys(data[i]).values;
-//                 var temp = [];
-//                 temp.push(raw[j*6+k]);
-//                 temp.push(keys.values[j]);
-//                 if(j === "0")rows0.push(temp);
-//                 if(j === "1")rows1.push(temp);
-//                 if(j === "2")rows2.push(temp);
-//             }
-//         }
-//         var lst = [];
-//         lst.push(rows0);
-//         lst.push(rows1);
-//         lst.push(rows2);
-//         rawData.push(lst);
-//     }
-//     //console.log(rawData);
-// }
-//
