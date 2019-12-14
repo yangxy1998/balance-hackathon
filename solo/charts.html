@@ -7,6 +7,7 @@
     <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
     <script src="data/base/test.js"></script>
     <script src="dist/data.js"></script>
+    <script src="dist/bundle.js"></script>
     <script src='dist/jquery-3.0.0.min.js'></script>
     <style>
         .ant-btn-red {
@@ -21,9 +22,9 @@
 </head>
 <body>
     <script>
-        JSONexecute('./data/tree/',execute);
+        JSONexecute('./data/tree/test_rate_data.json',execute);
     </script>
-    <div id="main" style="width: 600px;height:400px;"></div>
+    <div id="container" style="width: 600px;height:400px;"></div>
     <button type="button" onclick="show(rawData[1][0],rawData[1][1],rawData[1][2],'attack bace of A')" class="ant-btn ant-btn-red">基础攻击</button>
     <button type="button" onclick="show(rawData[3][0],rawData[3][1],rawData[3][2],'most attack of A')" class="ant-btn ant-btn-red">最大攻击</button>
     <button type="button" onclick="show(rawData[0][0],rawData[0][1],rawData[0][2],'hp of A')" class="ant-btn ant-btn-red">生命值</button>
