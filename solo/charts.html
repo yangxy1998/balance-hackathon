@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>myProject</title>
+    <!-- 引入 lib/echarts.custom.min.js -->
+    <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
+    <script src="data/base/test.js"></script>
+    <script src="dist/data.js"></script>
+    <script src='dist/jquery-3.0.0.min.js'></script>
+    <style>
+        .ant-btn-red {
+    color: #fff;
+    background-color: #FF5A44;
+    border-color: #FF5A44;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+}
+    </style>
+</head>
+<body>
+    <script>
+        JSONexecute('./data/tree/',execute);
+    </script>
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <button type="button" onclick="show(rawData[1][0],rawData[1][1],rawData[1][2],'attack bace of A')" class="ant-btn ant-btn-red">基础攻击</button>
+    <button type="button" onclick="show(rawData[3][0],rawData[3][1],rawData[3][2],'most attack of A')" class="ant-btn ant-btn-red">最大攻击</button>
+    <button type="button" onclick="show(rawData[0][0],rawData[0][1],rawData[0][2],'hp of A')" class="ant-btn ant-btn-red">生命值</button>
+    <button type="button" onclick="show(rawData[4][0],rawData[4][1],rawData[4][2],'slam bace of A')" class="ant-btn ant-btn-red">暴击伤害</button>
+    <button type="button" onclick="show(rawData[5][0],rawData[5][1],rawData[5][2],'slam rate of A')" class="ant-btn ant-btn-red" >暴击率</button>
+    <button type="button" onclick="show(rawData[2][0],rawData[2][1],rawData[2][2],'attack rate of A')" class="ant-btn ant-btn-red" >攻击频率</button>
+    <script>
+        let rawData=[];
+        function execute(data) {
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    rawData = [];
+    //console.log(data);
+    for(var k = 0;k<6;++k) {
+        var rows0 = [],rows1 = [],rows2 = [];
+        for (let i in data){
+            let keys = mapValues(data[i]);
+            for (let j in keys.values) {
+                let raw = mapKeys(data[i]).values;
+                var temp = [];
+                temp.push(raw[j*6+k]);
+                temp.push(keys.values[j]);
+                if(j === "0")rows0.push(temp);
+                if(j === "1")rows1.push(temp);
+                if(j === "2")rows2.push(temp);
+            }
+        }
+        var lst = [];
+        lst.push(rows0);
+        lst.push(rows1);
+        lst.push(rows2);
+        rawData.push(lst);
+    }
+    //return rawData;
+    //console.log(rawData);
+}
+
+        function show(dataA,dataB,dataC,chartname){
+        echarts.init(document.getElementById('main')).setOption({
+            title : {
+        text: 'A、B、C玩家的胜率分布',
+        //subtext: ''
+    },
+    grid: {
+        left: '3%',
+        right: '7%',
+        bottom: '3%',
+        containLabel: true
+    },
+    tooltip : {
+        // trigger: 'axis',
+        showDelay : 0,
+        formatter : function (params) {
+            if (params.value.length > 1) {
+                return params.seriesName + ' :<br/>'
+                chartname+ params.value[0] + 'rate:'
+                + params.value[1] ;
+            }
+            else {
+                return params.seriesName + ' :<br/>'
+                + params.name + ' : '
+                + params.value ;
+            }
+        },
+        axisPointer:{
+            show: true,
+            type : 'cross',
+            lineStyle: {
+                type : 'dashed',
+                width : 1
+            }
+        }
+    },
+    toolbox: {
+        feature: {
+            dataZoom: {},
+            brush: {
+                type: ['rect', 'polygon', 'clear']
+            }
+        }
+    },
+    brush: {
+    },
+    legend: {
+        data: ['A','B','C'],
+        left: 'center'
+    },
+    xAxis : [
+        {
+            type : 'value',
+            scale:true,
+            axisLabel : {
+                formatter: '{value} '
+            },
+            splitLine: {
+                show: false
+            }
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            scale:true,
+            axisLabel : {
+                formatter: '{value} '
+            },
+            splitLine: {
+                show: false
+            }
+        }
+    ],
+    series : [
+    {
+            name:'A胜率',
+            type:'scatter',
+            data:dataA,
+            markArea: {
+                silent: true,
+                itemStyle: {
+                    normal: {
+                        color: 'transparent',
+                        borderWidth: 1,
+                        borderType: 'dashed'
+                    }
+                },
+                data: [[{
+                    name: 'A胜率分布区间',
+                    xAxis: 'min',
+                    yAxis: 'min'
+                }, {
+                    xAxis: 'max',
+                    yAxis: 'max'
+                }]]
+            },
+            markPoint : {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ]
+            },
+            markLine : {
+                lineStyle: {
+                    normal: {
+                        type: 'solid'
+                    }
+                },
+                data : [
+                    {type : 'average', name: '平均值'},
+                    { xAxis: 160 }
+                ]
+            }
+        },
+        {
+            name:'B胜率',
+            type:'scatter',
+            data:dataB,
+            markArea: {
+                silent: true,
+                itemStyle: {
+                    normal: {
+                        color: 'transparent',
+                        borderWidth: 1,
+                        borderType: 'dashed'
+                    }
+                },
+                data: [[{
+                    name: 'B胜率分布区间',
+                    xAxis: 'min',
+                    yAxis: 'min'
+                }, {
+                    xAxis: 'max',
+                    yAxis: 'max'
+                }]]
+            },
+            markPoint : {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ]
+            },
+            markLine : {
+                lineStyle: {
+                    normal: {
+                        type: 'solid'
+                    }
+                },
+                data : [
+                    {type : 'average', name: '平均值'},
+                    { xAxis: 160 }
+                ]
+            }
+        },
+        {
+            name:'C胜率',
+            type:'scatter',
+            data: dataC,
+            markArea: {
+                silent: true,
+                itemStyle: {
+                    normal: {
+                        color: 'transparent',
+                        borderWidth: 1,
+                        borderType: 'dashed'
+                    }
+                },
+                data: [[{
+                    name: 'C胜率分布区间',
+                    xAxis: 'min',
+                    yAxis: 'min'
+                }, {
+                    xAxis: 'max',
+                    yAxis: 'max'
+                }]]
+            },
+            markPoint : {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ]
+            },
+            markLine : {
+                lineStyle: {
+                    normal: {
+                        type: 'solid'
+                    }
+                },
+                data : [
+                    {type : 'average', name: '平均值'},
+                    { xAxis: 170 }
+                ]
+            }
+        }
+    ]
+    });
+}
+    
+    </script>
+</body>
+</html>

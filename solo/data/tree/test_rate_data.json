@@ -1,1 +1,702 @@
-[{"A":1.108,"B":1.226,"C":0.666,"version":{"version":"1.0.0","players":[{"name":"A","hp":90,"operations":[{"name":"attack","base":12,"rate":0.24745178491326927,"most":18},{"name":"slam","base":20,"rate":0.6341957775809342},{"name":"defend"}]},{"name":"B","hp":110,"operations":[{"name":"attack","base":14,"rate":0.1510461127510497,"most":13},{"name":"slam","base":45,"rate":0.255353475634858},{"name":"defend"}]},{"name":"C","hp":49,"operations":[{"name":"attack","base":22,"rate":0.1175538672419516,"most":43},{"name":"slam","base":32,"rate":0.8433219843432098},{"name":"defend"}]}]}},{"A":0.989,"B":1.111,"C":0.9,"version":{"version":"1.0.0","players":[{"name":"A","hp":97,"operations":[{"name":"attack","base":10,"rate":0.22325056640795374,"most":18},{"name":"slam","base":16,"rate":0.3022017076815941},{"name":"defend"}]},{"name":"B","hp":116,"operations":[{"name":"attack","base":12,"rate":0.2574019944267394,"most":16},{"name":"slam","base":46,"rate":0.26611914826370175},{"name":"defend"}]},{"name":"C","hp":43,"operations":[{"name":"attack","base":21,"rate":0.18472251885184163,"most":35},{"name":"slam","base":44,"rate":0.8960581976807407},{"name":"defend"}]}]}},{"A":1.176,"B":0.803,"C":1.021,"version":{"version":"1.0.0","players":[{"name":"A","hp":99,"operations":[{"name":"attack","base":8,"rate":0.2245008784916265,"most":16},{"name":"slam","base":24,"rate":0.3603591381729749},{"name":"defend"}]},{"name":"B","hp":81,"operations":[{"name":"attack","base":12,"rate":0.2614405348876293,"most":14},{"name":"slam","base":39,"rate":0.2912137897399534},{"name":"defend"}]},{"name":"C","hp":58,"operations":[{"name":"attack","base":16,"rate":0.13836611018996514,"most":47},{"name":"slam","base":41,"rate":0.6886687389301105},{"name":"defend"}]}]}},{"A":1.29,"B":0.998,"C":0.712,"version":{"version":"1.0.0","players":[{"name":"A","hp":91,"operations":[{"name":"attack","base":11,"rate":0.14370342340618697,"most":24},{"name":"slam","base":18,"rate":0.6223499158985917},{"name":"defend"}]},{"name":"B","hp":96,"operations":[{"name":"attack","base":11,"rate":0.2044923171537397,"most":17},{"name":"slam","base":32,"rate":0.28274003936990766},{"name":"defend"}]},{"name":"C","hp":52,"operations":[{"name":"attack","base":18,"rate":0.13336352048076328,"most":35},{"name":"slam","base":32,"rate":0.69688834097271},{"name":"defend"}]}]}},{"A":1.711,"B":0.776,"C":0.513,"version":{"version":"1.0.0","players":[{"name":"A","hp":106,"operations":[{"name":"attack","base":11,"rate":0.2718851093434036,"most":18},{"name":"slam","base":19,"rate":0.6762830775115722},{"name":"defend"}]},{"name":"B","hp":93,"operations":[{"name":"attack","base":13,"rate":0.23018671433951174,"most":14},{"name":"slam","base":34,"rate":0.2925774884183149},{"name":"defend"}]},{"name":"C","hp":40,"operations":[{"name":"attack","base":24,"rate":0.20140303777707916,"most":49},{"name":"slam","base":45,"rate":0.7809937294935627},{"name":"defend"}]}]}},{"A":1.173,"B":0.945,"C":0.882,"version":{"version":"1.0.0","players":[{"name":"A","hp":92,"operations":[{"name":"attack","base":8,"rate":0.1286972718511811,"most":22},{"name":"slam","base":17,"rate":0.5597497872702928},{"name":"defend"}]},{"name":"B","hp":85,"operations":[{"name":"attack","base":10,"rate":0.26127928502987885,"most":14},{"name":"slam","base":49,"rate":0.1794011699353277},{"name":"defend"}]},{"name":"C","hp":43,"operations":[{"name":"attack","base":16,"rate":0.1553284133757377,"most":33},{"name":"slam","base":32,"rate":0.8897786594634207},{"name":"defend"}]}]}},{"A":1.28,"B":1.151,"C":0.569,"version":{"version":"1.0.0","players":[{"name":"A","hp":91,"operations":[{"name":"attack","base":12,"rate":0.2736356267085448,"most":24},{"name":"slam","base":17,"rate":0.32465396403316255},{"name":"defend"}]},{"name":"B","hp":84,"operations":[{"name":"attack","base":10,"rate":0.21861429949498842,"most":14},{"name":"slam","base":40,"rate":0.30628606746707965},{"name":"defend"}]},{"name":"C","hp":41,"operations":[{"name":"attack","base":15,"rate":0.14634125925250788,"most":33},{"name":"slam","base":34,"rate":0.5522761389468578},{"name":"defend"}]}]}},{"A":1.3,"B":1.16,"C":0.54,"version":{"version":"1.0.0","players":[{"name":"A","hp":99,"operations":[{"name":"attack","base":9,"rate":0.11215383720379979,"most":24},{"name":"slam","base":25,"rate":0.5080565207549483},{"name":"defend"}]},{"name":"B","hp":118,"operations":[{"name":"attack","base":14,"rate":0.1502739060897035,"most":14},{"name":"slam","base":45,"rate":0.16774448721796867},{"name":"defend"}]},{"name":"C","hp":43,"operations":[{"name":"attack","base":15,"rate":0.1193365552391239,"most":47},{"name":"slam","base":44,"rate":0.6330816948616722},{"name":"defend"}]}]}},{"A":1.415,"B":0.722,"C":0.863,"version":{"version":"1.0.0","players":[{"name":"A","hp":104,"operations":[{"name":"attack","base":9,"rate":0.26850177260383656,"most":16},{"name":"slam","base":23,"rate":0.5724471568258187},{"name":"defend"}]},{"name":"B","hp":89,"operations":[{"name":"attack","base":12,"rate":0.16273372037799802,"most":15},{"name":"slam","base":41,"rate":0.17478236801678879},{"name":"defend"}]},{"name":"C","hp":48,"operations":[{"name":"attack","base":22,"rate":0.11244291620714408,"most":45},{"name":"slam","base":44,"rate":0.6347811742274205},{"name":"defend"}]}]}},{"A":1.114,"B":1.176,"C":0.71,"version":{"version":"1.0.0","players":[{"name":"A","hp":103,"operations":[{"name":"attack","base":9,"rate":0.23882556872277264,"most":24},{"name":"slam","base":17,"rate":0.4336291953229741},{"name":"defend"}]},{"name":"B","hp":120,"operations":[{"name":"attack","base":12,"rate":0.27270237843093426,"most":13},{"name":"slam","base":40,"rate":0.17649030340855718},{"name":"defend"}]},{"name":"C","hp":40,"operations":[{"name":"attack","base":25,"rate":0.24505997530740262,"most":40},{"name":"slam","base":48,"rate":0.5568884489665387},{"name":"defend"}]}]}}]
+[
+    {
+        "A": 1.108,
+        "B": 1.226,
+        "C": 0.666,
+        "version": {
+            "version": "1.0.0",
+            "players": [
+                {
+                    "name": "A",
+                    "hp": 90,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 12,
+                            "rate": 0.24745178491326927,
+                            "most": 18
+                        },
+                        {
+                            "name": "slam",
+                            "base": 20,
+                            "rate": 0.6341957775809342
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "B",
+                    "hp": 110,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 14,
+                            "rate": 0.1510461127510497,
+                            "most": 13
+                        },
+                        {
+                            "name": "slam",
+                            "base": 45,
+                            "rate": 0.255353475634858
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "C",
+                    "hp": 49,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 22,
+                            "rate": 0.1175538672419516,
+                            "most": 43
+                        },
+                        {
+                            "name": "slam",
+                            "base": 32,
+                            "rate": 0.8433219843432098
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "A": 0.989,
+        "B": 1.111,
+        "C": 0.9,
+        "version": {
+            "version": "1.0.0",
+            "players": [
+                {
+                    "name": "A",
+                    "hp": 97,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 10,
+                            "rate": 0.22325056640795374,
+                            "most": 18
+                        },
+                        {
+                            "name": "slam",
+                            "base": 16,
+                            "rate": 0.3022017076815941
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "B",
+                    "hp": 116,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 12,
+                            "rate": 0.2574019944267394,
+                            "most": 16
+                        },
+                        {
+                            "name": "slam",
+                            "base": 46,
+                            "rate": 0.26611914826370175
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "C",
+                    "hp": 43,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 21,
+                            "rate": 0.18472251885184163,
+                            "most": 35
+                        },
+                        {
+                            "name": "slam",
+                            "base": 44,
+                            "rate": 0.8960581976807407
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "A": 1.176,
+        "B": 0.803,
+        "C": 1.021,
+        "version": {
+            "version": "1.0.0",
+            "players": [
+                {
+                    "name": "A",
+                    "hp": 99,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 8,
+                            "rate": 0.2245008784916265,
+                            "most": 16
+                        },
+                        {
+                            "name": "slam",
+                            "base": 24,
+                            "rate": 0.3603591381729749
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "B",
+                    "hp": 81,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 12,
+                            "rate": 0.2614405348876293,
+                            "most": 14
+                        },
+                        {
+                            "name": "slam",
+                            "base": 39,
+                            "rate": 0.2912137897399534
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "C",
+                    "hp": 58,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 16,
+                            "rate": 0.13836611018996514,
+                            "most": 47
+                        },
+                        {
+                            "name": "slam",
+                            "base": 41,
+                            "rate": 0.6886687389301105
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "A": 1.29,
+        "B": 0.998,
+        "C": 0.712,
+        "version": {
+            "version": "1.0.0",
+            "players": [
+                {
+                    "name": "A",
+                    "hp": 91,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 11,
+                            "rate": 0.14370342340618697,
+                            "most": 24
+                        },
+                        {
+                            "name": "slam",
+                            "base": 18,
+                            "rate": 0.6223499158985917
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "B",
+                    "hp": 96,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 11,
+                            "rate": 0.2044923171537397,
+                            "most": 17
+                        },
+                        {
+                            "name": "slam",
+                            "base": 32,
+                            "rate": 0.28274003936990766
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "C",
+                    "hp": 52,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 18,
+                            "rate": 0.13336352048076328,
+                            "most": 35
+                        },
+                        {
+                            "name": "slam",
+                            "base": 32,
+                            "rate": 0.69688834097271
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "A": 1.711,
+        "B": 0.776,
+        "C": 0.513,
+        "version": {
+            "version": "1.0.0",
+            "players": [
+                {
+                    "name": "A",
+                    "hp": 106,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 11,
+                            "rate": 0.2718851093434036,
+                            "most": 18
+                        },
+                        {
+                            "name": "slam",
+                            "base": 19,
+                            "rate": 0.6762830775115722
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "B",
+                    "hp": 93,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 13,
+                            "rate": 0.23018671433951174,
+                            "most": 14
+                        },
+                        {
+                            "name": "slam",
+                            "base": 34,
+                            "rate": 0.2925774884183149
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "C",
+                    "hp": 40,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 24,
+                            "rate": 0.20140303777707916,
+                            "most": 49
+                        },
+                        {
+                            "name": "slam",
+                            "base": 45,
+                            "rate": 0.7809937294935627
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "A": 1.173,
+        "B": 0.945,
+        "C": 0.882,
+        "version": {
+            "version": "1.0.0",
+            "players": [
+                {
+                    "name": "A",
+                    "hp": 92,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 8,
+                            "rate": 0.1286972718511811,
+                            "most": 22
+                        },
+                        {
+                            "name": "slam",
+                            "base": 17,
+                            "rate": 0.5597497872702928
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "B",
+                    "hp": 85,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 10,
+                            "rate": 0.26127928502987885,
+                            "most": 14
+                        },
+                        {
+                            "name": "slam",
+                            "base": 49,
+                            "rate": 0.1794011699353277
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "C",
+                    "hp": 43,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 16,
+                            "rate": 0.1553284133757377,
+                            "most": 33
+                        },
+                        {
+                            "name": "slam",
+                            "base": 32,
+                            "rate": 0.8897786594634207
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "A": 1.28,
+        "B": 1.151,
+        "C": 0.569,
+        "version": {
+            "version": "1.0.0",
+            "players": [
+                {
+                    "name": "A",
+                    "hp": 91,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 12,
+                            "rate": 0.2736356267085448,
+                            "most": 24
+                        },
+                        {
+                            "name": "slam",
+                            "base": 17,
+                            "rate": 0.32465396403316255
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "B",
+                    "hp": 84,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 10,
+                            "rate": 0.21861429949498842,
+                            "most": 14
+                        },
+                        {
+                            "name": "slam",
+                            "base": 40,
+                            "rate": 0.30628606746707965
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "C",
+                    "hp": 41,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 15,
+                            "rate": 0.14634125925250788,
+                            "most": 33
+                        },
+                        {
+                            "name": "slam",
+                            "base": 34,
+                            "rate": 0.5522761389468578
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "A": 1.3,
+        "B": 1.16,
+        "C": 0.54,
+        "version": {
+            "version": "1.0.0",
+            "players": [
+                {
+                    "name": "A",
+                    "hp": 99,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 9,
+                            "rate": 0.11215383720379979,
+                            "most": 24
+                        },
+                        {
+                            "name": "slam",
+                            "base": 25,
+                            "rate": 0.5080565207549483
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "B",
+                    "hp": 118,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 14,
+                            "rate": 0.1502739060897035,
+                            "most": 14
+                        },
+                        {
+                            "name": "slam",
+                            "base": 45,
+                            "rate": 0.16774448721796867
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "C",
+                    "hp": 43,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 15,
+                            "rate": 0.1193365552391239,
+                            "most": 47
+                        },
+                        {
+                            "name": "slam",
+                            "base": 44,
+                            "rate": 0.6330816948616722
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "A": 1.415,
+        "B": 0.722,
+        "C": 0.863,
+        "version": {
+            "version": "1.0.0",
+            "players": [
+                {
+                    "name": "A",
+                    "hp": 104,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 9,
+                            "rate": 0.26850177260383656,
+                            "most": 16
+                        },
+                        {
+                            "name": "slam",
+                            "base": 23,
+                            "rate": 0.5724471568258187
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "B",
+                    "hp": 89,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 12,
+                            "rate": 0.16273372037799802,
+                            "most": 15
+                        },
+                        {
+                            "name": "slam",
+                            "base": 41,
+                            "rate": 0.17478236801678879
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "C",
+                    "hp": 48,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 22,
+                            "rate": 0.11244291620714408,
+                            "most": 45
+                        },
+                        {
+                            "name": "slam",
+                            "base": 44,
+                            "rate": 0.6347811742274205
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "A": 1.114,
+        "B": 1.176,
+        "C": 0.71,
+        "version": {
+            "version": "1.0.0",
+            "players": [
+                {
+                    "name": "A",
+                    "hp": 103,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 9,
+                            "rate": 0.23882556872277264,
+                            "most": 24
+                        },
+                        {
+                            "name": "slam",
+                            "base": 17,
+                            "rate": 0.4336291953229741
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "B",
+                    "hp": 120,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 12,
+                            "rate": 0.27270237843093426,
+                            "most": 13
+                        },
+                        {
+                            "name": "slam",
+                            "base": 40,
+                            "rate": 0.17649030340855718
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                },
+                {
+                    "name": "C",
+                    "hp": 40,
+                    "operations": [
+                        {
+                            "name": "attack",
+                            "base": 25,
+                            "rate": 0.24505997530740262,
+                            "most": 40
+                        },
+                        {
+                            "name": "slam",
+                            "base": 48,
+                            "rate": 0.5568884489665387
+                        },
+                        {
+                            "name": "defend"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]
