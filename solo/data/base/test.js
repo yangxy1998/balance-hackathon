@@ -54,6 +54,7 @@ function execute(data) {
         lst.push(rows2);
         rawData.push(lst);
     }
-    console.log(rawData);
+    return rawData;
+    //console.log(rawData);
 }
 
