@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="dist/bundle.js"></script>
+    <script src="dist/jquery-3.0.0.min.js"></script>
+    <script src="dist/data.js"></script>
+    <script src="../layui/layui.js"></script>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+</head>
+<body>
+<div style="height: 100px"></div>
+<div class="layui-row">
+    <div class="layui-col-md4"><div id="A_HP"></div><p align="center">A_HP</p></div>
+    <div class="layui-col-md4"><div id="B_HP"></div><p align="center">B_HP</p></div>
+    <div class="layui-col-md4"><div id="C_HP"></div><p align="center">C_HP</p></div>
+    <div class="layui-col-md4"><div id="A_ATK_Base"></div><p align="center">A_ATK_Base</p></div>
+    <div class="layui-col-md4"><div id="B_ATK_Base"></div><p align="center">B_ATK_Base</p></div>
+    <div class="layui-col-md4"><div id="C_ATK_Base"></div><p align="center">C_ATK_Base</p></div>
+    <div class="layui-col-md4"><div id="A_ATK_Rate"></div><p align="center">A_ATK_Rate</p></div>
+    <div class="layui-col-md4"><div id="B_ATK_Rate"></div><p align="center">B_ATK_Rate</p></div>
+    <div class="layui-col-md4"><div id="C_ATK_Rate"></div><p align="center">C_ATK_Rate</p></div>
+    <div class="layui-col-md4"><div id="A_ATK_Most"></div><p align="center">A_ATK_Most</p></div>
+    <div class="layui-col-md4"><div id="B_ATK_Most"></div><p align="center">B_ATK_Most</p></div>
+    <div class="layui-col-md4"><div id="C_ATK_Most"></div><p align="center">C_ATK_Most</p></div>
+    <div class="layui-col-md4"><div id="A_SL_Base"></div><p align="center">A_SL_Base</p></div>
+    <div class="layui-col-md4"><div id="B_SL_Base"></div><p align="center">B_SL_Base</p></div>
+    <div class="layui-col-md4"><div id="C_SL_Base"></div><p align="center">C_SL_Base</p></div>
+    <div class="layui-col-md4"><div id="A_SL_Rate"></div><p align="center">A_SL_Rate</p></div>
+    <div class="layui-col-md4"><div id="B_SL_Rate"></div><p align="center">B_SL_Rate</p></div>
+    <div class="layui-col-md4"><div id="C_SL_Rate"></div><p align="center">C_SL_Rate</p></div>
+    <div class="layui-col-md2">
+        <div class="layui-btn layui-btn-radius layui-btn-normal" onclick="getData()">预测</div>
+    </div>
+    <div class="layui-col-md10">
+        <div class="layui-form">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="200">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>玩家</th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>胜率</td>
+                    <td id="A_Rate"></td>
+                    <td id="B_Rate"></td>
+                    <td id="C_Rate"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    let input=true;
+    let type='default';
+    let A_HP;
+    let B_HP;
+    let C_HP;
+    let A_ATK_Base;
+    let B_ATK_Base;
+    let C_ATK_Base;
+    let A_ATK_Rate;
+    let B_ATK_Rate;
+    let C_ATK_Rate;
+    let A_ATK_Most;
+    let B_ATK_Most;
+    let C_ATK_Most;
+    let A_SL_Base;
+    let B_SL_Base;
+    let C_SL_Base;
+    let A_SL_Rate;
+    let B_SL_Rate;
+    let C_SL_Rate;
+    layui.use('slider', function(){
+        let slider = layui.slider;
+        //渲染
+        A_HP=slider.render({
+            elem: '#A_HP',  //绑定元素
+            value: 1000,
+            min:800,
+            max:1200,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        B_HP=slider.render({
+            elem: '#B_HP',  //绑定元素
+            value: 1000,
+            min:800,
+            max:1200,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        C_HP=slider.render({
+            elem: '#C_HP',  //绑定元素
+            value: 500,
+            min:400,
+            max:600,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        A_ATK_Base=slider.render({
+            elem: '#A_ATK_Base',  //绑定元素
+            value: 100,
+            min:80,
+            max:120,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        B_ATK_Base=slider.render({
+            elem: '#B_ATK_Base',  //绑定元素
+            value: 120,
+            min:100,
+            max:140,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        C_ATK_Base=slider.render({
+            elem: '#C_ATK_Base',  //绑定元素
+            value: 200,
+            min:150,
+            max:250,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        A_ATK_Rate=slider.render({
+            elem: '#A_ATK_Rate',  //绑定元素
+            value: 20,
+            min:10,
+            max:30,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        B_ATK_Rate=slider.render({
+            elem: '#B_ATK_Rate',  //绑定元素
+            value: 20,
+            min:10,
+            max:30,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        C_ATK_Rate=slider.render({
+            elem: '#C_ATK_Rate',  //绑定元素
+            value: 20,
+            min:10,
+            max:30,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        A_ATK_Most=slider.render({
+            elem: '#A_ATK_Most',  //绑定元素
+            value: 200,
+            min:160,
+            max:240,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        B_ATK_Most=slider.render({
+            elem: '#B_ATK_Most',  //绑定元素
+            value: 150,
+            min:120,
+            max:180,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        C_ATK_Most=slider.render({
+            elem: '#C_ATK_Most',  //绑定元素
+            value: 400,
+            min:300,
+            max:500,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        A_SL_Base=slider.render({
+            elem: '#A_SL_Base',  //绑定元素
+            value: 200,
+            min:150,
+            max:250,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        B_SL_Base=slider.render({
+            elem: '#B_SL_Base',  //绑定元素
+            value: 400,
+            min:300,
+            max:500,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        C_SL_Base=slider.render({
+            elem: '#C_SL_Base',  //绑定元素
+            value: 400,
+            min:300,
+            max:500,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        A_SL_Rate=slider.render({
+            elem: '#A_SL_Rate',  //绑定元素
+            value: 50,
+            min:30,
+            max:70,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        B_SL_Rate=slider.render({
+            elem: '#B_SL_Rate',  //绑定元素
+            value: 50,
+            min:30,
+            max:70,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+        C_SL_Rate=slider.render({
+            elem: '#C_SL_Rate',  //绑定元素
+            value: 70,
+            min:50,
+            max:90,
+            step:1,
+            input,type,
+            change:function (value) {
+                this.value=value;
+            }
+        });
+    });
+    let array=[];
+    let result=[];
+    function execute(data){
+        console.log(data);
+        let weights=data.weights;
+        for(let i in weights[0]){
+            let sum=0.0;
+            for(let j=0;j<18;j++){
+                sum+=weights[j][i]*array[j];
+            }
+            sum+=weights[18][i];
+            result.push(sum);
+        }
+        $('#A_Rate').prop('innerHTML',result[0]);
+        $('#B_Rate').prop('innerHTML',result[1]);
+        $('#C_Rate').prop('innerHTML',result[2]);
+        console.log(result);
+    }
+    function getData(){
+        result=[];
+        array=[
+            A_HP.config.value,
+            A_ATK_Base.config.value,
+            A_ATK_Rate.config.value/100.0,
+            A_ATK_Most.config.value,
+            A_SL_Base.config.value,
+            A_SL_Rate.config.value/100.0,
+            B_HP.config.value,
+            B_ATK_Base.config.value,
+            B_ATK_Rate.config.value/100.0,
+            B_ATK_Most.config.value,
+            B_SL_Base.config.value,
+            B_SL_Rate.config.value/100.0,
+            B_HP.config.value,
+            B_ATK_Base.config.value,
+            B_ATK_Rate.config.value/100.0,
+            B_ATK_Most.config.value,
+            B_SL_Base.config.value,
+            B_SL_Rate.config.value/100.0,
+        ];
+        JSONexecute('./modules/predictor/predictor.json',execute);
+    }
+</script>
+<script>
+
+</script>
+</body>
+</html>
