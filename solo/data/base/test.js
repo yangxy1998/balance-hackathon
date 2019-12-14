@@ -3,26 +3,27 @@ const mapKeys=function (data) {
         A_Hp:data.version.players[0].hp,
         A_Attack_Base:data.version.players[0].operations[0].base,
         A_Attack_Rate:data.version.players[0].operations[0].rate,
-        A_Attack_Most:data.version.players[0].operations[0].most,
+        //A_Attack_Most:data.version.players[0].operations[0].most,
         A_Slam_Base:data.version.players[0].operations[1].base,
         A_Slam_Rate:data.version.players[0].operations[1].rate,
         B_Hp:data.version.players[0].hp,
         B_Attack_Base:data.version.players[1].operations[0].base,
         B_Attack_Rate:data.version.players[1].operations[0].rate,
-        B_Attack_Most:data.version.players[1].operations[0].most,
+       // B_Attack_Most:data.version.players[1].operations[0].most,
         B_Slam_Base:data.version.players[1].operations[1].base,
         B_Slam_Rate:data.version.players[1].operations[1].rate,
-        C_Hp:data.version.players[2].hp,
+        /*C_Hp:data.version.players[2].hp,
         C_Attack_Base:data.version.players[2].operations[0].base,
         C_Attack_Rate:data.version.players[2].operations[0].rate,
-        C_Attack_Most:data.version.players[2].operations[0].most,
+       // C_Attack_Most:data.version.players[2].operations[0].most,
         C_Slam_Base:data.version.players[2].operations[1].base,
-        C_Slam_Rate:data.version.players[2].operations[1].rate
+        C_Slam_Rate:data.version.players[2].operations[1].rate*/
     });
 };
 const mapValues=function (data) {
     return Index.Mapper({
-        A:data.A,B:data.B,C:data.C
+        A:data.A,B:data.B
+        //,C:data.C
     });
 };
 
