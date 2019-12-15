@@ -6,7 +6,7 @@ const mapKeys=function (data) {
         //A_Attack_Most:data.version.players[0].operations[0].most,
         A_Slam_Base:data.version.players[0].operations[1].base,
         A_Slam_Rate:data.version.players[0].operations[1].rate,
-        B_Hp:data.version.players[0].hp,
+        B_Hp:data.version.players[1].hp,
         B_Attack_Base:data.version.players[1].operations[0].base,
         B_Attack_Rate:data.version.players[1].operations[0].rate,
        // B_Attack_Most:data.version.players[1].operations[0].most,
