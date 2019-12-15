@@ -13,8 +13,7 @@
 }
     </style>
 </head>
-<body style="height: 100%; margin: 0">
-<div id="container" style="height: 100%"></div>
+<body>
 <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
 <script src="data/base/test.js"></script>
 <script src="dist/data.js"></script>
@@ -24,15 +23,40 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
-
+<script src="../layui/layui.all.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
-<div align="center" style="position:relative;top:10px">
-<button type="button" onclick="func(rawData[1][0],rawData[1][1],'attack bace of A')"  style="height:61px;width:100px;" class="ant-btn ant-btn-red">基础攻击</button>
-<button type="button" onclick="func(rawData[3][0],rawData[3][1],'most attack of A')"  style="height:61px;width:100px;" class="ant-btn ant-btn-red">最大攻击</button>
-<button type="button" onclick="func(rawData[0][0],rawData[0][1],'hp of A')" style="height:61px;width:100px;" class="ant-btn ant-btn-red">生命值</button>
-<button type="button" onclick="func(rawData[4][0],rawData[4][1],'slam rate of A')" style="height:61px;width:100px;" class="ant-btn ant-btn-red" >暴击率</button>
-<button type="button" onclick="func(rawData[2][0],rawData[2][1],'attack rate of A')" style="height:61px;width:100px;" class="ant-btn ant-btn-red" >攻击频率</button>
+
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+
+
+        <ul class="layui-nav">
+            <li class="layui-nav-item">均衡教派   </a></li>
+            <li class="layui-nav-item"><a href="charts.html">模拟数值</a></li>
+            <li class="layui-nav-item"><a href="predictor.html">相关数值预测</a></li>
+            <li class="layui-nav-item"><a href="heatmap.html">操作分析</a></li>
+            <li class="layui-nav-item"><a href="testCharts.html">回归分析</a></li>
+          </ul>
+    
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        
+        <ul class="layui-nav layui-nav-tree layui-inline" style="margin-right: 10px;" lay-filter="demo">
+          <li class="layui-nav-item" onclick="func(rawData[1][0],rawData[1][1],'attack bace of A')" > 基础攻击</li>
+          <li class="layui-nav-item" onclick="func(rawData[3][0],rawData[3][1],'most attack of A')">最大攻击</li>
+          <li class="layui-nav-item" onclick="func(rawData[0][0],rawData[0][1],'hp of A')">生命数值</li>
+          <li class="layui-nav-item" onclick="func(rawData[4][0],rawData[4][1],'slam rate of A')" >暴击概率</li>
+          <li class="layui-nav-item" onclick="func(rawData[2][0],rawData[2][1],'attack rate of A')">命中率</li>
+        </ul>
+      </div>
+
+      <div class="layui-body layui-bg-gray">
+        <div id="container" style="width: 1200px;height:800px;"></div>
+    </div>
 </div>
+
 <script type="text/javascript">
     function func(DataA,DataB,name) {
         var dom = document.getElementById("container");
