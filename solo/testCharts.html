@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+<div id="container" style="height: 100%"></div>
+<script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
+<script src="data/base/test.js"></script>
+<script src="dist/data.js"></script>
+<script src="dist/bundle.js"></script>
+<script src='dist/jquery-3.0.0.min.js'></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+<button type="button" onclick="func(rawData[1][0],rawData[1][1],'attack bace of A')" class="ant-btn ant-btn-red">基础攻击</button>
+<button type="button" onclick="func(rawData[3][0],rawData[3][1],'most attack of A')" class="ant-btn ant-btn-red">最大攻击</button>
+<button type="button" onclick="func(rawData[0][0],rawData[0][1],'hp of A')" class="ant-btn ant-btn-red">生命值</button>
+<button type="button" onclick="func(rawData[4][0],rawData[4][1],'slam rate of A')" class="ant-btn ant-btn-red" >暴击率</button>
+<button type="button" onclick="func(rawData[2][0],rawData[2][1],'attack rate of A')" class="ant-btn ant-btn-red" >攻击频率</button>
+<script type="text/javascript">
+    function func(DataA,DataB,name) {
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        /* var data = [
+             [96.24, 11.35],
+             [33.09, 85.11],
+             [57.60, 36.61],
+             [36.77, 27.26],
+             [20.10, 6.72],
+             [45.53, 36.37],
+             [110.07, 80.13],
+             [72.05, 20.88],
+             [39.82, 37.15],
+             [48.05, 70.50],
+             [0.85, 2.57],
+             [51.66, 63.70],
+             [61.07, 127.13],
+             [64.54, 33.59],
+             [35.50, 25.01],
+             [226.55, 664.02],
+             [188.60, 175.31],
+             [81.31, 108.68]
+         ];*/
+
+        var data = DataA;
+
+        var minnA = 2147483647,minnB = 2147483647;
+        for(var i in data){
+            if(minnA > data[i][0])minnA = data[i][0];
+            if(minnB > data[i][1])minnB = data[i][1];
+        }
+        for(var i in data){
+            data[i][0]-=minnA;
+            data[i][1]-=minnB;
+        }
+        minnA = 2147483647,minnB = 2147483647;
+        for(var i in DataB){
+            if(minnA > DataB[i][0])minnA = DataB[i][0];
+            if(minnB > DataB[i][1])minnB = DataB[i][1];
+        }
+        for(var i in data){
+            DataB[i][0]-=minnA;
+            DataB[i][1]-=minnB;
+        }
+        // See https://github.com/ecomfe/echarts-stat
+        var myRegression = ecStat.regression('polynomial', data, 3);
+        var newRegression = ecStat.regression('polynomial',DataB,3);
+        myRegression.points.sort(function(a, b) {
+            return a[0] - b[0];
+        });
+        newRegression.points.sort(function (a, b) {
+            return a[0] - b[0];
+        })
+        option = {
+
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross'
+                }
+            },
+            title: {
+                left: 'center',
+                top: 16
+            },
+            xAxis: {
+                type: 'value',
+                splitLine: {
+                    lineStyle: {
+                        type: 'dashed'
+                    }
+                },
+                splitNumber: 20
+            },
+            yAxis: {
+                type: 'value',
+                min: -0.3,
+                splitLine: {
+                    lineStyle: {
+                        type: 'dashed'
+                    }
+                }
+            },
+            grid: {
+                top: 90
+            },
+            series: [{
+                name: 'scatter',
+                type: 'scatter',
+                label: {
+                    emphasis: {
+                        show: true,
+                        position: 'right',
+                        textStyle: {
+                            color: 'blue',
+                            fontSize: 16
+                        }
+                    }
+                },
+                data: data
+            }, {
+                name: 'line',
+                type: 'line',
+                smooth: true,
+                showSymbol: false,
+                data: myRegression.points,
+                markPoint: {
+                    itemStyle: {
+                        normal: {
+                            color: 'transparent'
+                        }
+                    },
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'left',
+                            formatter: ()=>{var expression='y = ';for(let i in myRegression.parameter){
+                                expression+=myRegression.parameter[i]+'*'+'x^'+i+'+';
+                            }
+                            expression = expression.substring(0,expression.length-1);
+                            return expression;
+                            },
+                            textStyle: {
+                                color: '#333',
+                                fontSize: 14
+                            }
+                        }
+                    },
+                    data: [{
+                        coord: myRegression.points[myRegression.points.length - 1]
+                    }]
+                }
+            },{
+                name: 'scatterB',
+                type: 'scatter',
+                label: {
+                    emphasis: {
+                        show: true,
+                        position: 'right',
+                        textStyle: {
+                            color: 'green',
+                            fontSize: 16
+                        }
+                    }
+                },
+                data: DataB
+            }, {
+                name: 'lineB',
+                type: 'line',
+                smooth: true,
+                showSymbol: false,
+                data: newRegression.points,
+                markPoint: {
+                    itemStyle: {
+                        normal: {
+                            color: 'transparent'
+                        }
+                    },
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'left',
+                            formatter: () => {
+                                var expression = 'y = ';
+                                for (let i in newRegression.parameter) {
+                                    expression += newRegression.parameter[i] + '*' + 'x^' + i + '+';
+                                }
+                                expression = expression.substring(0, expression.length - 1);
+                                return expression;
+                            },
+                            textStyle: {
+                                color: '#444',
+                                fontSize: 14
+                            }
+                        }
+                    },
+                    data: [{
+                        coord: newRegression.points[newRegression.points.length - 1]
+                    }]
+                }
+            }
+            ]
+        };
+        console.log(myRegression);
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    }
+
+</script>
+<script>
+    //console.log("yes");
+    let rawData=[];
+    function execute(data) {
+        console.log(data);
+        var app = {};
+        option = null;
+        rawData = [];
+        //console.log(data);
+        for(var k = 0;k<5;++k) {
+            var rows0 = [],rows1 = [];
+            //rows2 = [];
+            for (let i in data){
+                let keys = mapValues(data[i]);
+                var int_i = parseInt(i);
+                //console.log(i);
+                //console.log(int_i);
+                var minn = k*100;
+                var maxx = (k+1)*100;
+                for (let j in keys.values) {
+                    var int_j = parseInt(j);
+                    if(!(int_i>=minn+500*int_j && int_i<maxx+500*int_j))continue;
+
+                    let raw = mapKeys(data[i]).values;
+                    if(raw[j*5+k] === 1000){
+                        console.log(i);
+                        console.log(j);
+                        console.log(j*5+k);
+                        console.log(raw);
+                    }
+                    var temp = [];
+                    temp.push(raw[j*5+k]);
+                    temp.push(keys.values[j]);
+                    //console.log(temp);
+                    if(j === "0")rows0.push(temp);
+                    if(j === "1")rows1.push(temp);
+                    //if(j === "2")rows2.push(temp);
+                }
+            }
+            var lst = [];
+            lst.push(rows0);
+            lst.push(rows1);
+            //lst.push(rows2);
+            rawData.push(lst);
+            console.log(rawData);
+        }
+        //return rawData;
+        console.log(rawData);
+        func();
+    }
+    JSONexecute('./data/tree/train_rate_data.json',execute);
+</script>
+</body>
+</html>
