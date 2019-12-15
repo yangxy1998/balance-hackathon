@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>行为分析</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+    <script src="dist/data.js"></script>
+    <script src="dist/jquery-3.0.0.min.js"></script>
+</head>
+<body>
+<div id="container" style="height: 1500px"></div>
+<script type="text/javascript">
+    function generateData(data){
+        let set=[];
+        for(let i=0;i<9;i++){
+            for(let j=0;j<11;j++){
+                set.push([i,j,0]);
+            }
+        }
+        for(let i in data){
+            let operation;
+            switch (data[i].player) {
+                case 'A':operation=0;break;
+                case 'B':operation=1;break;
+                case 'C':operation=2;break;
+            }
+            operation=operation*33+data[i].operation*11;
+            operation+=parseInt(data[i][data[i].player]/10);
+            console.log(operation);
+            set[operation][2]+=data[i].score;
+        }
+        return set;
+    }
+    function execute(data) {
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        app.title = '具体行为分析';
+        var days = [];
+        for(let i=0;i<11;i++)days.push(i*10);
+        var hours = ['A:attack', 'A:slam', 'A:defend',
+            'B:attack', 'B:slam','B:defend','C:attack', 'C:slam','C:defend'];
+
+        var data = generateData(data);
+        option = {
+            tooltip: {
+                position: 'top'
+            },
+            animation: false,
+            grid: {
+                height: '50%',
+                y: '10%'
+            },
+            xAxis: {
+                type: 'category',
+                data: hours,
+                splitArea: {
+                    show: true
+                }
+            },
+            yAxis: {
+                type: 'category',
+                data: days,
+                splitArea: {
+                    show: true
+                }
+            },
+            visualMap: {
+                min: 0,
+                max: 1000,
+                calculable: true,
+                orient: 'horizontal',
+                left: 'center',
+                bottom: '15%'
+            },
+            series: [{
+                name: 'Total score',
+                type: 'heatmap',
+                data: data,
+                label: {
+                    normal: {
+                        show: true
+                    }
+                },
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 300,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
+        };;
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    }
+    JSONexecute('./data/tree/test_detail_data.json',execute);
+</script>
+</body>
+</html>
