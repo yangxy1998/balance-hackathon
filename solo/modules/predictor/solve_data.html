@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html style="height: 100%" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,13 +7,37 @@
     <script src="../../dist/data.js"></script>
     <script src="../../dist/bundle.js"></script>
     <script src='../../dist/jquery-3.0.0.min.js'></script>
+    <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
 </head>
 
+<body style="height: 100%; margin: 0">
+<div id="container" style="height: 100%"></div>
 <script>
+    var p1 = 0,p2 = 0;
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+
+
+    var ans = [];
     var s1 = 0;
     var s2 = 0;
     var sm = 0;
     var p = 0;
+    var flag = 0;
     const xValues = function (dta) {
         console.log(dta);
         return Index.Mapper({
@@ -40,13 +64,11 @@
         });
     };
     function execute(data){
+        ++flag;
         console.log(data);
         let rw = xValues(data).values;
-        /*console.log(rw);
-        for(var i = 0;i<20;++i){
-            if(i%2 === 0)s1+=rw[i];
-            else s2+=rw[i];
-        }*/
+        /*console.log(rw);*/
+        ans.push(rw);
         var s11 = rw[0]+rw[10];
         var s12 = rw[2]+rw[4]+rw[12]+rw[14];
         var s13 = rw[6]+rw[8]+rw[16]+rw[18];
@@ -67,14 +89,14 @@
         console.log(p);*/
     }
     function solve(data){
+        ++flag;
+
         let rw = xValues(data).values;
+        ans.push(rw);
         /*var s3 = 0,s4 = 0;
-        var sk = 0;
-        for(var i = 0;i<20;++i){
-            if(i%2===0)s3+rw[i];
-            else s4+=rw[i];
-        }
-        sk = (s3+s4)-sm;*/
+        var sk = 0;*/
+
+        sk = (s3+s4)-sm;
         var s11 = rw[0]+rw[10];
         var s12 = rw[2]+rw[4]+rw[12]+rw[14];
         var s13 = rw[6]+rw[8]+rw[16]+rw[18];
@@ -85,20 +107,159 @@
         var s4 = (s21+s22+s23)/3;
         //console.log(s3);
        // console.log(s4);
-        var p1 = s3-s1;
-        var p2 = s4-s2;
+        p1 = s3-s1;
+        p2 = s4-s2;
         console.log(p1);
         console.log(p2);
        // var p = (s3+s4)/2-sm;
         //console.log(p);
+        console.log(flag);
+        if(flag ===3){
+            /*console.log(ans);
+            option = {
+                legend: {},
+                tooltip: {},
+                dataset: {
+                    dimensions: ['product', 'v.1.0.0', 'v.1.0.1', 'v.1.0.2'],
+                    source: [
+                        {product: 'A_Hp_A_rate', 'v.1.0.0': ans[0][0], 'v.1.0.1': ans[1][0], 'v.1.0.2': ans[2][0]},
+                        {product: 'A_Hp_B_rate', 'v.1.0.0': ans[0][1], 'v.1.0.1': ans[1][1], 'v.1.0.2': ans[2][1]},
+                        {product: 'A_Attack_Base_A_rate:', 'v.1.0.0': ans[0][2], 'v.1.0.1': ans[1][2], 'v.1.0.2': ans[2][2]},
+                        {product: 'A_Attack_Base_B_rate:', 'v.1.0.0': ans[0][3], 'v.1.0.1': ans[1][3], 'v.1.0.2': ans[2][3]},
+                        {product: 'A_Attack_Rate_A_rate', 'v.1.0.0': ans[0][4], 'v.1.0.1': ans[1][4], 'v.1.0.2': ans[2][4]},
+                        {product: 'A_Attack_Rate_B_rate', 'v.1.0.0': ans[0][5], 'v.1.0.1': ans[1][5], 'v.1.0.2': ans[2][5]},
+                        {product: 'A_Slam_Base_A_rate', 'v.1.0.0': ans[0][6], 'v.1.0.1': ans[1][6], 'v.1.0.2': ans[2][6]},
+                        {product: 'A_Slam_Base_B_rate', 'v.1.0.0': ans[0][7], 'v.1.0.1': ans[1][7], 'v.1.0.2': ans[2][7]},
+                        {product: 'A_Slam_Rate_A_rate', 'v.1.0.0': ans[0][8], 'v.1.0.1': ans[1][8], 'v.1.0.2': ans[2][8]},
+                        {product: 'A_Slam_Rate_B_rate', 'v.1.0.0': ans[0][9], 'v.1.0.1': ans[1][9], 'v.1.0.2': ans[2][9]},
+                        {product: 'B_Hp_A_rate', 'v.1.0.0': ans[0][10], 'v.1.0.1': ans[1][10], 'v.1.0.2': ans[2][10]},
+                        {product: 'B_Hp_B_rate', 'v.1.0.0': ans[0][11], 'v.1.0.1': ans[1][11], 'v.1.0.2': ans[2][11]},
+                        {product: 'B_Attack_Base_A_rate:', 'v.1.0.0': ans[0][12], 'v.1.0.1': ans[1][12], 'v.1.0.2': ans[2][12]},
+                        {product: 'B_Attack_Base_B_rate:', 'v.1.0.0': ans[0][13], 'v.1.0.1': ans[1][13], 'v.1.0.2': ans[2][13]},
+                        {product: 'B_Attack_Rate_A_rate', 'v.1.0.0': ans[0][14], 'v.1.0.1': ans[1][14], 'v.1.0.2': ans[2][14]},
+                        {product: 'B_Attack_Rate_B_rate', 'v.1.0.0': ans[0][15], 'v.1.0.1': ans[1][15], 'v.1.0.2': ans[2][15]},
+                        {product: 'B_Slam_Base_A_rate', 'v.1.0.0': ans[0][16], 'v.1.0.1': ans[1][16], 'v.1.0.2': ans[2][16]},
+                        {product: 'B_Slam_Base_B_rate', 'v.1.0.0': ans[0][17], 'v.1.0.1': ans[1][17], 'v.1.0.2': ans[2][17]},
+                        {product: 'B_Slam_Rate_A_rate', 'v.1.0.0': ans[0][18], 'v.1.0.1': ans[1][18], 'v.1.0.2': ans[2][18]},
+                        {product: 'B_Slam_Rate_B_rate', 'v.1.0.0': ans[0][19], 'v.1.0.1': ans[1][19], 'v.1.0.2': ans[2][19]}
+                    ]
+                },
+                xAxis: {type: 'category'},
+                yAxis: {},
+                // Declare several bar series, each will be mapped
+                // to a column of dataset.source by default.
+                series: [
+                    {type: 'bar'},
+                    {type: 'bar'},
+                    {type: 'bar'}
+                ]
+            };
+            */
+           // app.title = '斜率条形图';
+            var st = 'v.1.0.1 p1 = ';
+            st = st+'p1 = '+p1+' p2 = '+p2;
+            option = {
+                tooltip : {
+                    trigger: 'axis',
+                    axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                        type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                legend: {
+                    data:['v.1.0.0 p1 = 0 p2 = 0', st]
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis : [
+                    {
+                        type : 'value'
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'category',
+                        axisTick : {show: false},
+                        data : ['A_Hp_A','A_Hp_B','A_Attack_Base_A','A_Attack_Base_B','A_Attack_Rate_A','A_Attack_Rate_B',
+                            'A_Slam_Base_A','A_Slam_Base_B','A_Slam_Rate_A','A_Slam_Rate_B','B_Hp_A','B_Hp_B','B_Attack_Base_A',
+                            'B_Attack_Base_B','B_Attack_Rate_A','B_Attack_Rate_B',
+                            'B_Slam_Base_A','B_Slam_Base_B','B_Slam_Rate_A','B_Slam_Rate_B']
+                    }
+                ],
+                series : [
+                    {
+                        name:'v.1.0.0 p1 = 0 p2 = 0',
+                        type:'bar',
+                        label: {
+                            normal: {
+                                show: false,
+                                position: 'inside'
+                            }
+                        },
+                        data:ans[0]
+                    },
+                    {
+                        name:st,
+                        type:'bar',
+                        stack: '总量',
+                        label: {
+                            normal: {
+                                show: false
+                            }
+                        },
+                        data:ans[1]
+                    }/*
+                    {
+                        name:'v.1.0.2',
+                        type:'bar',
+                        stack: '总量',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'left'
+                            }
+                        },
+                        data:ans[2]
+                    }*/
+                ]
+            };
+            //app.title = '正负条形图';
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+
+
+        }
     }
     JSONexecute('predictor_0.json',execute);
     JSONexecute('predictor_1.json',solve);
     JSONexecute('predictor_2.json',solve);
     //console.log(p);
-</script>
-<body>
 
+
+</script>
+<script>
+    /*
+    var table = "<table id=\"date\" name=\"TableName\" class='table table-striped table-bordered table-hover' >";
+    table += "<thead><tr><th>" + "" + "</th>";
+        for (var i = 0; i < date.length; i++) {
+        table += "<th >" + date[i] + "</th>";
+        }
+        table += "</tr></thead><tbody>";
+    for (var j = 0; j < department.length; j++) {
+    table += "<tr>";
+        table += "<td>" + department[j] + "</td>";
+        for (var n = 0; n < date.length; n++) {
+        table += "<td>" + SeriesStr[0].data[n] + "</td>";
+        }
+        }
+        table += "</tr>";
+    table += "</tbody></table>";
+$("#Exceltable").html(table);*/
+</script>
 </body>
 
 </html>
