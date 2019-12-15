@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../data/base/test.js"></script>
+    <script src="../../dist/data.js"></script>
+    <script src="../../dist/bundle.js"></script>
+    <script src='../../dist/jquery-3.0.0.min.js'></script>
+</head>
+
+<script>
+    var s1 = 0;
+    var s2 = 0;
+    var sm = 0;
+    var p = 0;
+    const xValues = function (dta) {
+        console.log(dta);
+        return Index.Mapper({
+            A_Hp_A_rate:dta.weights[0][0],
+            A_Hp_B_rate:dta.weights[0][1],
+            A_Attack_Base_A_rate:dta.weights[1][0],
+            A_Attack_Base_B_rate:dta.weights[1][1],
+            A_Attack_Rate_A_rate:dta.weights[2][0],
+            A_Attack_Rate_B_rate:dta.weights[2][1],
+            A_Slam_Base_A_rate:dta.weights[3][0],
+            A_Slam_Base_B_rate:dta.weights[3][1],
+            A_Slam_Rate_A_rate:dta.weights[4][0],
+            A_Slam_Rate_B_rate:dta.weights[4][1],
+            B_Hp_A_rate:dta.weights[5][0],
+            B_Hp_B_rate:dta.weights[5][1],
+            B_Attack_Base_A_rate:dta.weights[6][0],
+            B_Attack_Base_B_rate:dta.weights[6][1],
+            B_Attack_Rate_A_rate:dta.weights[7][0],
+            B_Attack_Rate_B_rate:dta.weights[7][1],
+            B_Slam_Base_A_rate:dta.weights[8][0],
+            B_Slam_Base_B_rate:dta.weights[8][1],
+            B_Slam_Rate_A_rate:dta.weights[9][0],
+            B_Slam_Rate_B_rate:dta.weights[9][1]
+        });
+    };
+    function execute(data){
+        console.log(data);
+        let rw = xValues(data).values;
+        console.log(rw);
+        for(var i = 0;i<20;++i){
+            if(i%2 === 0)s1+=rw[i];
+            else s2+=rw[i];
+        }
+        sm = (s1+s2)/2;
+        console.log(s1-sm);
+        console.log(s2-sm);
+    }
+    function solve(data){
+        let rw = xValues(data).values;
+        var s3 = 0,s4 = 0;
+        for(var i = 0;i<20;++i){
+            if(i%2===0)s3+rw[i];
+            else s4+=rw[i];
+        }
+
+        var p1 = s3-sm;
+        var p2 = s4-sm;
+        console.log(p1);
+        console.log(p2);
+    }
+    JSONexecute('predictor_1.json',execute);
+    JSONexecute('predictor_2.json',solve);
+    //console.log(p);
+</script>
+<body>
+
+</body>
+
+</html>

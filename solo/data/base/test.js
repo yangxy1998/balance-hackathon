@@ -1,3 +1,5 @@
+
+
 const mapKeys=function (data) {
     return Index.Mapper({
         A_Hp:data.version.players[0].hp,
@@ -26,7 +28,30 @@ const mapValues=function (data) {
         //,C:data.C
     });
 };
-
+const kValues = function (data) {
+    return Index.Mapper({
+        A_Hp_A_rate:data.weight[0][0],
+        A_Hp_B_rate:data.weight[0][1],
+        A_Attack_Base_A_rate:data.weight[1][0],
+        A_Attack_Base_B_rate:data.weight[1][1],
+        A_Attack_Rate_A_rate:data.weight[2][0],
+        A_Attack_Rate_B_rate:data.weight[2][1],
+        A_Slam_Base_A_rate:data.weight[3][0],
+        A_Slam_Base_B_rate:data.weight[3][1],
+        A_Slam_Rate_A_rate:data.weight[4][0],
+        A_Slam_Rate_B_rate:data.weight[4][1],
+        B_Hp_A_rate:data.weight[5][0],
+        B_Hp_B_rate:data.weight[5][1],
+        B_Attack_Base_A_rate:data.weight[6][0],
+        B_Attack_Base_B_rate:data.weight[6][1],
+        B_Attack_Rate_A_rate:data.weight[7][0],
+        B_Attack_Rate_B_rate:data.weight[7][1],
+        B_Slam_Base_A_rate:data.weight[8][0],
+        B_Slam_Base_B_rate:data.weight[8][1],
+        B_Slam_Rate_A_rate:data.weight[9][0],
+        B_Slam_Rate_B_rate:data.weight[9][1]
+    });
+};
 
 // function execute(data) {
 //     var dom = document.getElementById("container");
