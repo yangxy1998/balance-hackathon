@@ -8,8 +8,23 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
     <script src="dist/data.js"></script>
     <script src="dist/jquery-3.0.0.min.js"></script>
+    <script src="../layui/layui.all.js" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
 </head>
 <body>
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+    
+    
+            <ul class="layui-nav">
+                <li class="layui-nav-item">均衡教派   </a></li>
+                <li class="layui-nav-item"><a href="charts.html">模拟数值</a></li>
+                <li class="layui-nav-item"><a href="predictor.html">相关数值预测</a></li>
+                <li class="layui-nav-item"><a href="heatmap.html">操作分析</a></li>
+                <li class="layui-nav-item"><a href="testCharts.html">回归分析</a></li>
+              </ul>
+        
+        </div>
 <div id="container" style="height: 1500px"></div>
 <script type="text/javascript">
     function generateData(data){

@@ -7,6 +7,7 @@
     <script src="../../dist/data.js"></script>
     <script src="../../dist/bundle.js"></script>
     <script src='../../dist/jquery-3.0.0.min.js'></script>
+<<<<<<< HEAD
     <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
@@ -20,6 +21,10 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+=======
+
+    <script>data=[];</script> 
+>>>>>>> b15a82e67df4aa1226df0343668903816ffd6bea
 </head>
 
 <body style="height: 100%; margin: 0">
@@ -238,6 +243,7 @@
     JSONexecute('predictor_1.json',solve);
     JSONexecute('predictor_2.json',solve);
     //console.log(p);
+<<<<<<< HEAD
 
 
 </script>
@@ -260,6 +266,30 @@
     table += "</tbody></table>";
 $("#Exceltable").html(table);*/
 </script>
+=======
+</script></script>>
+<body>
+    <script>
+      
+
+var table = "<table id=\"date\" name=\"TableName\" class='table table-striped table-bordered table-hover' >";
+table += "<thead><tr><th>" + "" + "</th>";
+for (var i = 0; i < date.length; i++) {
+table += "<th >" + date[i] + "</th>";
+}
+table += "</tr></thead><tbody>";
+for (var j = 0; j < department.length; j++) {
+table += "<tr>";
+table += "<td>" + department[j] + "</td>";
+for (var n = 0; n < date.length; n++) {
+table += "<td>" + SeriesStr[0].data[n] + "</td>";
+}
+}
+table += "</tr>";
+table += "</tbody></table>";
+$("#Exceltable").html(table);
+    </script>
+>>>>>>> b15a82e67df4aa1226df0343668903816ffd6bea
 </body>
 
 </html>
