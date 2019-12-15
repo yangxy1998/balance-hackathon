@@ -26,11 +26,13 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
-<button type="button" onclick="func(rawData[1][0],rawData[1][1],'attack bace of A')" class="ant-btn ant-btn-red">基础攻击</button>
-<button type="button" onclick="func(rawData[3][0],rawData[3][1],'most attack of A')" class="ant-btn ant-btn-red">最大攻击</button>
-<button type="button" onclick="func(rawData[0][0],rawData[0][1],'hp of A')" class="ant-btn ant-btn-red">生命值</button>
-<button type="button" onclick="func(rawData[4][0],rawData[4][1],'slam rate of A')" class="ant-btn ant-btn-red" >暴击率</button>
-<button type="button" onclick="func(rawData[2][0],rawData[2][1],'attack rate of A')" class="ant-btn ant-btn-red" >攻击频率</button>
+<div align="center" style="position:relative;top:10px">
+<button type="button" onclick="func(rawData[1][0],rawData[1][1],'attack bace of A')"  style="height:61px;width:100px;" class="ant-btn ant-btn-red">基础攻击</button>
+<button type="button" onclick="func(rawData[3][0],rawData[3][1],'most attack of A')"  style="height:61px;width:100px;" class="ant-btn ant-btn-red">最大攻击</button>
+<button type="button" onclick="func(rawData[0][0],rawData[0][1],'hp of A')" style="height:61px;width:100px;" class="ant-btn ant-btn-red">生命值</button>
+<button type="button" onclick="func(rawData[4][0],rawData[4][1],'slam rate of A')" style="height:61px;width:100px;" class="ant-btn ant-btn-red" >暴击率</button>
+<button type="button" onclick="func(rawData[2][0],rawData[2][1],'attack rate of A')" style="height:61px;width:100px;" class="ant-btn ant-btn-red" >攻击频率</button>
+</div>
 <script type="text/javascript">
     function func(DataA,DataB,name) {
         var dom = document.getElementById("container");
