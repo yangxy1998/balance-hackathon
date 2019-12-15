@@ -42,29 +42,58 @@
     function execute(data){
         console.log(data);
         let rw = xValues(data).values;
-        console.log(rw);
+        /*console.log(rw);
         for(var i = 0;i<20;++i){
             if(i%2 === 0)s1+=rw[i];
             else s2+=rw[i];
-        }
-        sm = (s1+s2)/2;
+        }*/
+        var s11 = rw[0]+rw[10];
+        var s12 = rw[2]+rw[4]+rw[12]+rw[14];
+        var s13 = rw[6]+rw[8]+rw[16]+rw[18];
+        var s21 = rw[1]+rw[11];
+        var s22 = rw[3]+rw[5]+rw[13]+rw[15];
+        var s23 = rw[7]+rw[9]+rw[17]+rw[19];
+        s1 = (s11+s12+s13)/3;
+        s2 = (s21+s22+s23)/3;
+        console.log(s1);
+        console.log(s2);
+        /*sm = (s1+s2)/2;
+        console.log(sm);
+        //console.log(s1);
+        //console.log(s2);
         console.log(s1-sm);
         console.log(s2-sm);
+        var p = (s1+s2)/2-sm;
+        console.log(p);*/
     }
     function solve(data){
         let rw = xValues(data).values;
-        var s3 = 0,s4 = 0;
+        /*var s3 = 0,s4 = 0;
+        var sk = 0;
         for(var i = 0;i<20;++i){
             if(i%2===0)s3+rw[i];
             else s4+=rw[i];
         }
-
-        var p1 = s3-sm;
-        var p2 = s4-sm;
+        sk = (s3+s4)-sm;*/
+        var s11 = rw[0]+rw[10];
+        var s12 = rw[2]+rw[4]+rw[12]+rw[14];
+        var s13 = rw[6]+rw[8]+rw[16]+rw[18];
+        var s21 = rw[1]+rw[11];
+        var s22 = rw[3]+rw[5]+rw[13]+rw[15];
+        var s23 = rw[7]+rw[9]+rw[17]+rw[19];
+        var s3 = (s11+s12+s13)/3;
+        var s4 = (s21+s22+s23)/3;
+        //console.log(s3);
+       // console.log(s4);
+        var p1 = s3-s1;
+        var p2 = s4-s2;
         console.log(p1);
         console.log(p2);
+       // var p = (s3+s4)/2-sm;
+        //console.log(p);
     }
-    JSONexecute('predictor_1.json',execute);
+    JSONexecute('predictor_0.json',execute);
+    JSONexecute('predictor_1.json',solve);
     JSONexecute('predictor_2.json',solve);
     //console.log(p);
 </script>
